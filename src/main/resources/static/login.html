@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>登录</title>
+    <!--    <link rel="stylesheet" href="css/normalize.css">-->
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/sign-up-login.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/inputEffect.css"/>
+    <link rel="stylesheet" href="css/tooltips.css"/>
+    <link rel="stylesheet" href="css/spop.min.css"/>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/jquery.pure.tooltips.js"></script>
+    <script src="js/spop.min.js"></script>
+</head>
+<body>
+<!-- 雪花背景 -->
+<div class="snow-container"></div>
+<!-- 登录控件 -->
+<div id="login">
+    <input id="tab-1" type="radio" name="tab" class="sign-in hidden" checked/>
+    <input id="tab-2" type="radio" name="tab" class="sign-up hidden"/>
+    <input id="tab-3" type="radio" name="tab" class="sign-out hidden"/>
+    <input id="tab-4" type="radio" name="tab" class="sign-unlock hidden"/>
+    <div class="wrapper">
+        <!-- 登录页面 -->
+        <div class="login sign-in-htm">
+            <form class="container offset1 loginform" method="post" action="/user/login">
+                <!-- 猫头鹰控件 -->
+                <div id="owl-login" class="login-owl">
+                    <div class="hand"></div>
+                    <div class="hand hand-r"></div>
+                    <div class="arms">
+                        <div class="arm"></div>
+                        <div class="arm arm-r"></div>
+                    </div>
+                </div>
+                <div class="pad input-container">
+                    <section class="content">
+							<span class="input input--hideo">
+								<input class="input__field input__field--hideo" name="username" type="text"
+                                       id="login-username"
+                                       autocomplete="off" placeholder="请输入用户名" tabindex="1" maxlength="15"/>
+								<label class="input__label input__label--hideo" for="login-username">
+									<i class="fa fa-fw fa-user icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+                        <span class="input input--hideo">
+								<input class="input__field input__field--hideo" name="password" type="password"
+                                       id="login-password" placeholder="请输入密码" tabindex="2" maxlength="50"/>
+								<label class="input__label input__label--hideo" for="login-password">
+									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+                    </section>
+                </div>
+                <div class="form-actions">
+                    <a tabindex="4" class="btn pull-left btn-link text-muted" onClick="goto_forget()">忘记密码?</a>
+                    <a tabindex="5" class="btn btn-outline-success" onClick="goto_register()">注册</a>
+                    <!--                    <input class="btn btn-primary" type="button" tabindex="3" onClick="login()" value="登录"-->
+                    <!--                           style="color:white;"/>-->
+                    <input class="btn btn-success" type="submit" tabindex="3" value="登录"
+                           style="color:white;"/>
+                </div>
+            </form>
+        </div>
+        <!-- 忘记密码页面 -->
+        <div class="login sign-out-htm">
+            <form action="#" method="post" class="container offset1 loginform">
+                <!-- 猫头鹰控件 -->
+                <div id="owl-login" class="forget-owl">
+                    <div class="hand"></div>
+                    <div class="hand hand-r"></div>
+                    <div class="arms">
+                        <div class="arm"></div>
+                        <div class="arm arm-r"></div>
+                    </div>
+                </div>
+                <div class="pad input-container">
+                    <section class="content">
+							<span class="input input--hideo">
+								<input class="input__field input__field--hideo" type="text" id="forget-username"
+                                       autocomplete="off" placeholder="请输入用户名"/>
+								<label class="input__label input__label--hideo" for="forget-username">
+									<i class="fa fa-fw fa-user icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+                        <span class="input input--hideo">
+								<input class="input__field input__field--hideo" type="text" id="forget-identification"
+                                       autocomplete="off" placeholder="请输入身份证号码"/>
+								<label class="input__label input__label--hideo" for="forget-identification">
+									<i class="fa fa-fw fa-id-card icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+                        <span class="input input--hideo">
+								<input class="input__field input__field--hideo" type="password" id="forget-password"
+                                       placeholder="请重置密码"/>
+								<label class="input__label input__label--hideo" for="forget-password">
+									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+                    </section>
+                </div>
+                <div class="form-actions">
+                    <a class="btn pull-left btn-link text-muted" onClick="goto_login()">返回登录</a>
+                    <input class="btn btn-success" type="button" onClick="forget()" value="重置密码"
+                           style="color:white;"/>
+                </div>
+            </form>
+        </div>
+        <!-- 注册页面 -->
+        <div class="login sign-up-htm">
+            <form action="#" method="post" class="container offset1 loginform">
+                <!-- 猫头鹰控件 -->
+                <div id="owl-login" class="register-owl">
+                    <div class="hand"></div>
+                    <div class="hand hand-r"></div>
+                    <div class="arms">
+                        <div class="arm"></div>
+                        <div class="arm arm-r"></div>
+                    </div>
+                </div>
+                <div class="pad input-container">
+                    <section class="content">
+                        <span class="input input--hideo">
+                            <input class="input__field input__field--hideo" type="text" id="register-username"
+                                   autocomplete="off" placeholder="请输入用户名" maxlength="15"/>
+                            <label class="input__label input__label--hideo" for="register-username">
+                                <i class="fa fa-fw fa-user icon icon--hideo"></i>
+                                <span class="input__label-content input__label-content--hideo"></span>
+                            </label>
+                        </span>
+                        <span class="input input--hideo">
+								<input class="input__field input__field--hideo" type="password" id="register-password"
+                                       placeholder="请输入密码" maxlength="15"/>
+								<label class="input__label input__label--hideo" for="register-password">
+									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+                        <span class="input input--hideo">
+								<input class="input__field input__field--hideo" type="password" id="register-repassword"
+                                       placeholder="请确认密码" maxlength="15"/>
+								<label class="input__label input__label--hideo" for="register-repassword">
+									<i class="fa fa-fw fa-lock icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+                        <span class="input input--hideo">
+								<input class="input__field input__field--hideo" type="text" id="register-nickName"
+                                       placeholder="请输入昵称"/>
+								<label class="input__label input__label--hideo" for="register-nickName">
+									<i class="fa fa-fw fa-map-marker icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+                        <span class="input input--hideo">
+                            <input class="input__field input__field--hideo" type="text" id="register-relname"
+                                   autocomplete="off" placeholder="请输入真实姓名" maxlength="15"/>
+                            <label class="input__label input__label--hideo" for="register-relname">
+                                <i class="fa fa-fw fa-user icon icon--hideo"></i>
+                                <span class="input__label-content input__label-content--hideo"></span>
+                            </label>
+                        </span>
+                        <span class="input input--hideo">
+								<input class="input__field input__field--hideo" type="text" id="register-id"
+                                       autocomplete="off" placeholder="请输入身份证号码"/>
+								<label class="input__label input__label--hideo" for="register-id">
+									<i class="fa fa-fw fa-credit-card icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+                        <span class="input input--hideo">
+								<input class="input__field input__field--hideo" type="text" id="register-tel"
+                                       placeholder="请输入电话号码"/>
+								<label class="input__label input__label--hideo" for="register-tel">
+									<i class="fa fa-fw fa-mobile icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+							</span>
+
+                        <span class="input selectize">
+                            <label class="input__label input__label--hideo">
+									<i class="fa fa-fw fa-transgender icon icon--hideo"></i>
+									<span class="input__label-content input__label-content--hideo"></span>
+								</label>
+                            <!--								<input class="input__field input__field&#45;&#45;hideo" type="text" id="register-sex"/>-->
+                                <select style="width: 100%;margin-left: 40px" id="register-sex">
+                                        <option style="width: 100%" value="男">男</option>
+                                        <option style="width: 100%" value="女">女</option>
+                                    </select>
+							</span>
+                    </section>
+                </div>
+                <div class="form-actions">
+                    <a class="btn pull-left btn-link text-muted" onClick="goto_login()">返回登录</a>
+                    <input class="btn btn-success" type="button" onClick="register()" value="注册"
+                           style="color:white;"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

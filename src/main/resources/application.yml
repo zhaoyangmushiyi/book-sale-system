@@ -1,0 +1,28 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: Book Sale System
+  datasource:
+    username: book
+    password: a123456
+    url: jdbc:mysql://139.9.126.82:3306/book_sale_system?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 30000
+  jpa:
+    show-sql: true
+  mvc:
+    favicon:
+      enabled: false
+aliyun:
+  endpoint: oss-cn-chengdu.aliyuncs.com
+  accessKeyId: LTAI4FediEdQ2ZNtkTGNuYyp
+  AccessKeySecret: oDAVk75LBl6Ag4QcgC1qpSRq9LxzQV
+  bucketName: book-sale-system
+info:
+  app:
+    name: ${spring.application.name}
+    description: Book Sale System
+    version: 1.0.0

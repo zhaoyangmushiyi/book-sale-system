@@ -1,0 +1,228 @@
+<!doctype html>
+<html class="no-js h-100" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>图书销售管理系统 - admin</title>
+  <meta name="description" content="A high-quality &amp; bank information management system.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="../css/shards-dashboards.1.1.0.min.css">
+  <link rel="stylesheet" href="../css/extras.1.1.0.min.css">
+  <!--    <script async defer src="https://buttons.github.io/buttons.js"></script>-->
+</head>
+<body class="h-100">
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Main Sidebar -->
+    <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
+      <div class="main-navbar">
+        <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
+          <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
+            <div class="d-table m-auto">
+              <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;" src="../images/shards/shards-dashboards-logo.svg" alt="Shards Dashboard">
+              <span class="d-none d-md-inline ml-1">图书销售管理系统</span>
+            </div>
+          </a>
+          <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+            <i class="material-icons">&#xE5C4;</i>
+          </a>
+        </nav>
+      </div>
+
+      <div class="nav-wrapper">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="user-management.html">
+              <i class="material-icons">person</i>
+              <span>用户管理</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="category-management.html">
+              <i class="material-icons">bookmarks</i>
+              <span>分类管理</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="book-management.html">
+              <i class="material-icons">book</i>
+              <span>图书管理</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="order-management.html">
+              <i class="material-icons">list</i>
+              <span>订单管理</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="consumption-statistics.html">
+              <i class="material-icons">book</i>
+              <span>会员列表</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <!-- End Main Sidebar -->
+    <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+      <div class="main-navbar sticky-top bg-white">
+        <!-- Main Navbar -->
+        <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
+          <form action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
+            <div class="input-group input-group-seamless ml-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="fas fa-search"></i>
+                </div>
+              </div>
+              <input class="navbar-search form-control" type="text" placeholder="根据用户名或身份证号搜索用户" aria-label="Search"> </div>
+          </form>
+          <ul class="navbar-nav border-left flex-row ">
+            <li class="nav-item dropdown" style="text-align: right">
+              <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <!--                <img class="user-avatar rounded-circle mr-2" src="../../../../../../../../Vue/designrevision/Shards-Dashboard-Lite-1.1.0/HTML/images/avatars/0.jpg" alt="User Avatar">-->
+                <span class="d-none d-md-inline-block" id="admin-name" style="width: 8rem; font-size: 1.5rem" >Admin</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-small">
+                <a class="dropdown-item" href="user-management.html">
+                  <i class="material-icons">person</i>用户管理</a>
+                <a class="dropdown-item" href="category-management.html">
+                  <i class="material-icons">bookmarks</i>分类管理</a>
+                <a class="dropdown-item" href="book-management.html">
+                  <i class="material-icons">book</i>图书管理</a>
+                <a class="dropdown-item" href="order-management.html">
+                  <i class="material-icons">list</i>分类管理</a>
+                <a class="dropdown-item" href="consumption-statistics.html">
+                  <i class="material-icons">list</i>会员列表</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-danger" href="../logout">
+                  <i class="material-icons text-danger">&#xE879;</i> Logout </a>
+              </div>
+            </li>
+          </ul>
+          <nav class="nav">
+            <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+              <i class="material-icons">&#xE5D2;</i>
+            </a>
+          </nav>
+        </nav>
+      </div>
+      <!-- / .main-navbar -->
+      <div class="main-content-container container-fluid px-4">
+        <!-- Page Header -->
+        <div class="page-header row no-gutters py-4">
+          <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+            <!--            <span class="text-uppercase page-subtitle">Dashboard</span>-->
+            <h3 class="page-title">用户管理</h3>
+          </div>
+        </div>
+        <!-- End Page Header -->
+        <!-- Account Management -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card card-small mb-4">
+              <div class="card-header border-bottom">
+                <h6 class="m-0">用户信息</h6>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item p-3">
+                  <div class="row">
+                    <div class="col">
+                      <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <i class="material-icons">person</i>
+                            <label for="feUsername">用户名</label>
+                            <input type="text" class="form-control" id="feUsername" name="username" placeholder="用户名"> </div>
+                          <div class="form-group col-md-6">
+                            <i class="material-icons">face</i>
+                            <label for="feRelname">真实姓名</label>
+                            <input type="text" class="form-control" id="feRelname" name="realName" placeholder="真实姓名"> </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <i class="material-icons">tag_faces</i>
+                            <label for="feInputNickName">昵称</label>
+                            <input type="text" class="form-control" id="feInputNickName" name="nickName" placeholder="昵称"> </div>
+                          <div class="form-group col-md-6">
+                            <i class="material-icons">phone</i>
+                            <label for="feTelephone">电话号码</label>
+                            <input type="tel" class="form-control" id="feTelephone" name="telephone" placeholder="电话号码"> </div>
+                        </div>
+                        <div class="form-group">
+                          <i class="material-icons">payment</i>
+                          <label for="feIdentification">身份证号码</label>
+                          <input type="text" class="form-control" id="feIdentification" name="identification" placeholder="身份证号码">
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <i class="material-icons">security</i>
+                            <label for="feRole">角色</label>
+                            <select id="feRole" class="form-control">
+                              <option selected>user</option>
+                              <option>admin</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <i class="material-icons">wc</i>
+                            <label for="feSex">性别</label>
+                            <select id="feSex" class="form-control">
+                              <option selected>男</option>
+                              <option>女</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-4" style="text-align: center">
+                            <button id="AddOrUpdateAccount" type="submit" class="btn btn-outline-accent" style="position: absolute;bottom: 0;left: 25%;">添加用户</button>
+                          </div>
+
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="user-management.html">用户管理</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="category-management.html">分类管理</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="book-management.html">图书管理</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="order-management.html">订单管理</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="consumption-statistics.html">会员列表</a>
+          </li>
+        </ul>
+        <span class="copyright ml-auto my-auto mr-2">Copyright © 2020 Monochrome</span>
+      </footer>
+    </main>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.form/4.2.2/jquery.form.js"></script>
+<!--<script src="../js/popper.min.js" crossorigin="anonymous"></script>-->
+<script src="../js/bootstrap.min.js"></script>
+<!--<script src="../js/Chart.min.js"></script>-->
+<script src="../js/shards.min.js"></script>
+<!--<script src="../js/jquery.sharrre.min.js"></script>-->
+<!--<script src="../js/extras.1.1.0.min.js"></script>-->
+<!--<script src="../js/shards-dashboards.1.1.0.min.js"></script>-->
+<script src="../js/user_management.js"></script>
+</body>
+</html>
