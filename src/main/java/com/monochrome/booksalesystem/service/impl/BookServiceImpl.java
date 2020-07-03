@@ -6,10 +6,12 @@ import com.monochrome.booksalesystem.entity.CartItem;
 import com.monochrome.booksalesystem.entity.DTO.BookDTO;
 import com.monochrome.booksalesystem.entity.User;
 import com.monochrome.booksalesystem.entity.convert.BookDTOConvert;
+import com.monochrome.booksalesystem.entity.es.EsBook;
 import com.monochrome.booksalesystem.repository.BookRepository;
 import com.monochrome.booksalesystem.repository.CartItemRepository;
 import com.monochrome.booksalesystem.repository.CartRepository;
 import com.monochrome.booksalesystem.repository.UserRepository;
+import com.monochrome.booksalesystem.repository.es.EsBookRepository;
 import com.monochrome.booksalesystem.service.BookService;
 import com.monochrome.booksalesystem.utils.AliyunOssUtil;
 import org.springframework.data.domain.Page;
@@ -38,12 +40,15 @@ public class BookServiceImpl implements BookService {
 
     private final CartItemRepository cartItemRepository;
 
-    public BookServiceImpl(BookRepository bookRepository, AliyunOssUtil aliyunOssUtil, CartRepository cartRepository, UserRepository userRepository, CartItemRepository cartItemRepository) {
+    private final EsBookRepository esBookRepository;
+
+    public BookServiceImpl(BookRepository bookRepository, AliyunOssUtil aliyunOssUtil, CartRepository cartRepository, UserRepository userRepository, CartItemRepository cartItemRepository, EsBookRepository esBookRepository) {
         this.bookRepository = bookRepository;
         this.aliyunOssUtil = aliyunOssUtil;
         this.cartRepository = cartRepository;
         this.userRepository = userRepository;
         this.cartItemRepository = cartItemRepository;
+        this.esBookRepository = esBookRepository;
     }
 
     @Override
@@ -215,17 +220,16 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDTO> searchBook(String name, int pageNumber, int pageSize) {
-        List<Book> booksByName = bookRepository.findBooksByName(name);
-        while (booksByName.size() > 12) {
-            booksByName.remove(12);
+    public List<EsBook> searchBook(String name, int pageNumber, int pageSize) {
+        List<EsBook> booksByName = esBookRepository.findEsBooksByName(name, PageRequest.of(0, 12, Sort.Direction.ASC, "id")).getContent();
+        List<EsBook> booksByAuthor = esBookRepository.findEsBooksByAuthor(name, PageRequest.of(0, 12, Sort.Direction.ASC, "id")).getContent();
+        if (booksByAuthor.size() > 0) {
+            booksByName.addAll(booksByAuthor);
+            while (booksByName.size() > 12) {
+                booksByName.remove(12);
+            }
         }
-        List<Book> booksByAuthor = bookRepository.findBooksByAuthor(name);
-        booksByName.addAll(booksByAuthor);
-        while (booksByName.size() > 12) {
-            booksByName.remove(12);
-        }
-        return new BookDTOConvert().doBackward(booksByName);
+        return booksByName;
     }
 
 }

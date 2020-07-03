@@ -1,6 +1,7 @@
 package com.monochrome.booksalesystem.controller;
 
 import com.monochrome.booksalesystem.entity.DTO.BookDTO;
+import com.monochrome.booksalesystem.entity.es.EsBook;
 import com.monochrome.booksalesystem.service.BookService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.catalina.authenticator.FormAuthenticator;
@@ -83,10 +84,10 @@ public class BookController {
 
     @PostMapping("/searchBook")
     @ApiOperation(value = "searchBook", notes = "searchBook")
-    public List<BookDTO> searchBook(@RequestParam("name") String name,
-                           @RequestParam("pageNumber") int pageNumber,
-                           @RequestParam("pageSize") int pageSize) {
-        List<BookDTO> result = null;
+    public List<EsBook> searchBook(@RequestParam("name") String name,
+                                   @RequestParam("pageNumber") int pageNumber,
+                                   @RequestParam("pageSize") int pageSize) {
+        List<EsBook> result = null;
         try {
             result = bookService.searchBook(name, pageNumber, pageSize);
         } catch (Exception e) {

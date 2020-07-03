@@ -2,6 +2,7 @@ package com.monochrome.booksalesystem.service;
 
 import com.monochrome.booksalesystem.entity.Book;
 import com.monochrome.booksalesystem.entity.DTO.BookDTO;
+import com.monochrome.booksalesystem.entity.es.EsBook;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,5 +37,5 @@ public interface BookService {
     @Transactional
     String addBookToCart(String username, long bookId);
 
-    List<BookDTO> searchBook(String name, int pageNumber, int pageSize);
+    List<EsBook> searchBook(String name, int pageNumber, int pageSize);
 }

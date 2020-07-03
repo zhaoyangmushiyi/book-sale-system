@@ -13,9 +13,46 @@ spring:
       max-lifetime: 30000
   jpa:
     show-sql: true
-  mvc:
-    favicon:
-      enabled: false
+  data:
+    elasticsearch:
+      client:
+        reactive:
+          endpoints:
+            - localhost:9200
+            - localhost:9300
+          username: elastic
+          password: monochrome
+  elasticsearch:
+    rest:
+      uris:
+        - localhost:9200
+      username: elastic
+      password: monochrome
+  resources:
+#    static-locations: classpath:/static/,classpath:/views/,classpath:/templates/
+    chain:
+      strategy:
+        #MD5实现
+        content:
+          enabled: true
+          paths: /**
+          #版本号管理（与MD5实现方式同时存在时，需要指定不同的路径，来分别实现对应的文件管理）
+          #fixed:
+          # 开启版本控制策略，默认为false
+          #enabled: true
+          #paths: /**,/v1.0.0/**
+          #version: v1.0.0
+      cache: true
+      compressed: true
+      enabled: true
+      #缓存
+    cache:
+      cachecontrol:
+        cache-public: true
+        # 缓存有效期 24小时
+        max-age: 24h
+      # 资源缓存时间，单位天，7天
+      period: 7d
 aliyun:
   endpoint: oss-cn-chengdu.aliyuncs.com
   accessKeyId: LTAI4FediEdQ2ZNtkTGNuYyp
