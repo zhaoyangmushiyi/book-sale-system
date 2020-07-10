@@ -26,7 +26,7 @@ public class Swagger2 {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("book-booksale-system RESTful APIs")
+                .title("book-sale-system RESTful APIs")
                 .description("服务名：book-sale-system")
                 .version("1.0")
                 .build();
