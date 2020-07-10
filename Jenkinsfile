@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         APP_NAME = "book-sale-system"
-        APP_PORT = "8080"
+        APP_PORT = "8090"
         REPO_URL = "git@github.com:zhaoyangmushiyi/book-sale-system.git"
         BRANCH_NAME = "master"
         PARAM = "--net=host"
