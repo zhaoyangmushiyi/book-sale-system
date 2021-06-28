@@ -205,7 +205,7 @@ public class UserServiceImpl implements UserService {
         if (verificationCode.equals(verifyCodeKeyByRedis)) {
             return "验证成功";
         }
-        return "验证码已发送到手机，请尽快输入，验证码将于30分钟后失效！";
+        return "验证失败！";
     }
 
     private String getRandomVerificationCode() {
