@@ -33,7 +33,7 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login", "/user/register", "/user/forgetPassword", "/user/applyUnlock", "/login.html", "/v2/api-docs", "/swagger-resources/configuration/ui",
+                .antMatchers("/login", "/user/register", "/user/forgetPassword", "/user/applyUnlock", "/user/getVerificationCode", "/user/verifyPhoneAndVerificationCode", "/login.html", "/v2/api-docs", "/swagger-resources/configuration/ui",
                         "/swagger-resources", "/swagger-resources/configuration/security", "/webjars/springfox-swagger-ui/*",
                         "/swagger-ui.html", "/css/*", "/fonts/*", "/images/*", "/js/*")
                 .permitAll()

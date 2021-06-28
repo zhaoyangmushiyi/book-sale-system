@@ -144,4 +144,28 @@ public class UserController {
         return result;
     }
 
+    @PostMapping("/getVerificationCode")
+    @ApiOperation(value = "getVerificationCode", notes = "getVerificationCode")
+    public String getVerificationCode(@RequestParam("phone") String phone) {
+        String result = null;
+        try {
+            result = userService.getVerificationCode(phone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @PostMapping("/verifyPhoneAndVerificationCode")
+    @ApiOperation(value = "verifyPhoneAndVerificationCode", notes = "verifyPhoneAndVerificationCode")
+    public String verifyPhoneAndVerificationCode(@RequestParam("phone") String phone, @RequestParam("verificationCode") String verificationCode) {
+        String result = null;
+        try {
+            result = userService.verifyPhoneAndVerificationCode(phone, verificationCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }

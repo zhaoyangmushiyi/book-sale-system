@@ -33,4 +33,8 @@ public interface UserService extends UserDetailsService {
     long findUserCount();
 
     List<UserDTO> findConsumptionStatisticsSortedByStatus(int page, int size, int orderType);
+
+    String getVerificationCode(String phone);
+
+    String verifyPhoneAndVerificationCode(String phone, String verificationCode);
 }

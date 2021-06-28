@@ -2,16 +2,17 @@ package com.monochrome.booksalesystem.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import com.monochrome.booksalesystem.entity.Book;
 import com.monochrome.booksalesystem.entity.DTO.UserDTO;
 import com.monochrome.booksalesystem.entity.DTO.UserInputDTO;
 import com.monochrome.booksalesystem.entity.User;
 import com.monochrome.booksalesystem.entity.convert.UserDTOConvert;
 import com.monochrome.booksalesystem.repository.UserRepository;
 import com.monochrome.booksalesystem.service.UserService;
+import lombok.extern.java.Log;
 import org.springframework.beans.BeansException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,15 +24,20 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @Service
+@Log
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    private final StringRedisTemplate redisTemplate;
+
+    public UserServiceImpl(UserRepository userRepository, StringRedisTemplate redisTemplate) {
         this.userRepository = userRepository;
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
@@ -172,4 +178,42 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll(PageRequest.of(page, size, Sort.Direction.DESC, sortStr)).getContent();
         return new UserDTOConvert().doBackward(users);
     }
+
+    @Override
+    public String getVerificationCode(String phone) {
+        String verifyCodeCountKey = "verifyCode" + phone + ":count";
+        String verifyCodeKey = "verifyCode" + phone + ":code";
+        String count = redisTemplate.opsForValue().get(verifyCodeCountKey);
+        if (count == null) {
+            redisTemplate.opsForValue().set(verifyCodeCountKey, "1", 1, TimeUnit.DAYS);
+        } else if (Integer.parseInt(count) <= 2) {
+            redisTemplate.opsForValue().increment(verifyCodeCountKey);
+        } else {
+            return "今天输入次数已超过3次！";
+        }
+        String verificationCode = getRandomVerificationCode();
+        log.info(verifyCodeKey + "------" + verificationCode);
+        redisTemplate.opsForValue().set(verifyCodeKey, verificationCode, 30, TimeUnit.MINUTES);
+        return "验证码已发送到手机，请尽快输入，验证码将于30分钟后失效！";
+    }
+
+    @Override
+    public String verifyPhoneAndVerificationCode(String phone, String verificationCode) {
+
+        String verifyCodeKey = "verifyCode" + phone + ":code";
+        String verifyCodeKeyByRedis = redisTemplate.opsForValue().get(verifyCodeKey);
+        if (verificationCode.equals(verifyCodeKeyByRedis)) {
+            return "验证成功";
+        }
+        return "验证码已发送到手机，请尽快输入，验证码将于30分钟后失效！";
+    }
+
+    private String getRandomVerificationCode() {
+        StringBuilder verificationCode = new StringBuilder();
+        for (int i = 0; i < 6; i++) {
+            verificationCode.append(new Random().nextInt(10));
+        }
+        return verificationCode.toString();
+    }
+
 }
